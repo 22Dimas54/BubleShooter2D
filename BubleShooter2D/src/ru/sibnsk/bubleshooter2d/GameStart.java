@@ -11,6 +11,7 @@ public class GameStart {
 		startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		startFrame.setContentPane(panel);
+		startFrame.setResizable(false);
 		startFrame.pack();
 		startFrame.setLocationRelativeTo(null);
 		startFrame.setVisible(true);

@@ -21,5 +21,4 @@ public class GameBack {
 		g.setColor(color);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGTH);
 	}
-
 }

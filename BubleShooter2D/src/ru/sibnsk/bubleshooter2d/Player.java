@@ -8,13 +8,13 @@ public class Player {
 	private double x, y;
 	private int r;
 
-	private double dx, dy;// MOVE Coef
+	private double dx, dy;// MOVE Coef;
 
 	private int speed;
 	
-	private int health;
+	public static int health;
 
-	private Color color1, color2;
+	private Color color1;
 
 	public static boolean down;
 	public static boolean left;
@@ -34,7 +34,7 @@ public class Player {
 
 		speed = 5;
 		
-		health = 1;
+		health = 5;
 
 		color1 = Color.WHITE;
 

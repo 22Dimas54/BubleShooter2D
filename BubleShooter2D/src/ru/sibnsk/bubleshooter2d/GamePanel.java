@@ -43,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public static ArrayList<Enemy> enemies;
 	public static Wave wave;
 	public static Menue menue;
+	public static LifePlayer lifePlayer;
 
 	// Constructor
 	public GamePanel() {
@@ -59,7 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 	// Functions
 
-	public void start() {
+	public  void start() {
 		thread = new Thread(this);
 		thread.start();
 	}
@@ -84,6 +85,7 @@ public class GamePanel extends JPanel implements Runnable {
 		// enemies.add(new Enemy(1, 1));
 		wave = new Wave();
 		menue = new Menue();
+		lifePlayer = new LifePlayer();
 
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		BufferedImage buffered = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
@@ -127,6 +129,12 @@ public class GamePanel extends JPanel implements Runnable {
 			}
 			timerFPS = 0;
 			sleepTime = 1;
+			
+			//Game over
+			if(player.health == 0) {
+				state = STATES.MENUE;
+			}
+			
 		}
 	}
 
@@ -193,21 +201,29 @@ public class GamePanel extends JPanel implements Runnable {
 			double dist = Math.sqrt(dx * dx + dy * dy);
 			if ((int) dist <= e.getR() + player.getR()) {
 				e.hit();
-				player.hit();
+				//player.hit();
+				//lifePlayer.update();
 				boolean remove = e.remove();
 				if (remove) {
 					enemies.remove(i);
+					player.hit();
+					lifePlayer.update();
 					i--;
 				}
 			}
 		}
 		// Wave update
 		wave.update();
+
 	}
 
 	public void gameRender() {
+		
 		// background draw
 		background.draw(g);
+		
+		// Life player draw
+		lifePlayer.draw(g);		
 
 		// Player draw
 		player.draw(g);

@@ -25,6 +25,8 @@ public class Listeners implements KeyListener, MouseListener, MouseMotionListene
 		}	
 		if(key == KeyEvent.VK_ESCAPE) {
 			GamePanel.state = GamePanel.STATES.MENUE;
+			Menue.play = "Continue..";
+			Menue.newGame = true;
 		}
 	}
 
